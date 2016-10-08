@@ -9,7 +9,7 @@ __ https://akindi.com
 Installation
 ============
 
-1. `Contact Akindi`__ to get API keys for your Moodle instance. You will recive
+1. `Contact Akindi`__ to get API keys for your Moodle instance. You will receive
    two key pairs, one for development and one for production. They will look
    something like this::
 
@@ -76,3 +76,10 @@ __ mailto:support@akindi.com
 
 9. Test your integration: navigate to a course, expand *Course
    administration*, then click *Launch Akindi*!
+
+Usage Notes
+===========
+
+Akindi assumes that student's ``idnumber`` field will be a numeric student ID.
+Akindi will still function if it isn't, but the instructor will have to manually
+assign each scanned sheet to a student.
