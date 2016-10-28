@@ -28,9 +28,9 @@ function ak_action_get_roster($action) {
       'student_id'=>$student->idnumber,
       'name'=>$student->lastname . "; " . $student->firstname,
       'fields'=>array(
-        'ext_user_id'=>$student->id,
-        'ext_email'=>$student->email,
-        'ext_username'=>$student->username,
+        'lms_user_id'=>$student->id,
+        'lms_email'=>$student->email,
+        'lms_username'=>$student->username,
       )
     ));
   }
@@ -107,12 +107,12 @@ function ak_action_update_grades($action) {
 
   $res = array();
   foreach (ak_get($AK_POST_JSON, 'updates') as $update) {
-    $userid = ak_get($update, 'ext_user_id');
+    $userid = ak_get($update, 'lms_user_id');
     $rawgrade = ak_get($update, 'mark');
     $did_update = $grade_item->update_raw_grade(
       $userid, $rawgrade, 'akindi', '', FORMAT_PLAIN, $USER->id
     );
-    array_push($res, array('ext_user_id'=>$userid, 'success'=>$did_update));
+    array_push($res, array('lms_user_id'=>$userid, 'success'=>$did_update));
   }
   return $res;
 }
