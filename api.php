@@ -24,8 +24,16 @@ function ak_action_get_roster($action) {
 
   $students = array();
   foreach (get_enrolled_users($context) as $id=>$student) {
+
+    // Replace the $student->idnumber with a custom profile field
+    profile_load_custom_fields($student);
+    $gid = $student->profile->gid;
+    $idnumber = preg_replace("/[^0-9]/", "", $gid);
+
+    //$idnumber = $student->idnumber;
+    
     array_push($students, array(
-      'student_id'=>$student->idnumber,
+      'student_id'=>$idnumber,
       'name'=>$student->lastname . "; " . $student->firstname,
       'fields'=>array(
         'lms_user_id'=>$student->id,
