@@ -35,6 +35,7 @@ function ak_test_insert_user($num) {
     'username'=>"aktest$num",
     'lastname'=>"Test User $num",
     'firstname'=>"Test User $num",
+    'idnumber'=>"$num",
   ));
 }
 
