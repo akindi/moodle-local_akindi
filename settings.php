@@ -36,4 +36,19 @@ if ( $hassiteconfig ){
 		PARAM_TEXT
 	));
 
+        $customfields = profile_get_custom_fields();
+        unset($options);
+        $options['idnumber'] = "ID number";
+        $options['userid'] = "Moodle user id";
+        foreach ($customfields as $field) {
+            $options[$field->shortname] = $field->name;
+        }
+        
+        $settings->add(new admin_setting_configselect(
+		'akindi_student_id_field',
+		'Akindi student id field',
+		'The field from a user profile to use as the student id on Akindi forms.',
+		'idnumber',
+		$options
+	));
 }
