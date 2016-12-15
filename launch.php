@@ -17,7 +17,7 @@ $PAGE->set_context($context);
 $PAGE->set_url('/local/akindi/launch.php');
 $PAGE->set_heading($SITE->fullname);
 $PAGE->set_pagelayout('admin');
-$PAGE->set_title(get_string('pluginname', 'local_akindi'));
+$PAGE->set_title(get_string('launching', 'local_akindi'));
 $PAGE->navbar->add(get_string('pluginname', 'local_akindi'));
 echo $OUTPUT->header();
 
@@ -77,22 +77,30 @@ $to_sign = "$expires\n$data_str";
 $signature = ak_sign($CFG->akindi_secret_key, $to_sign);
 
 ?>
-<h2>Launching Akindi&hellip;</h2>
+<h2><?=get_string('launching', 'local_akindi')?>&hellip;</h2>
 
-<form id="ak-launch-form" method="POST" action="<?=trim($CFG->akindi_launch_url)?>">
+<form id="ak-launch-form" method="POST" action="<?=trim($CFG->akindi_launch_url)?>" target="_blank">
   <input type="hidden" name="public_key" value="<?=htmlspecialchars($CFG->akindi_public_key)?>" />
   <input type="hidden" name="signature" value="<?=htmlspecialchars($signature)?>" />
   <input type="hidden" name="expires" value="<?=htmlspecialchars($expires)?>" />
   <input type="hidden" name="data" value="<?=htmlspecialchars($data_str)?>" />
   <noscript>
-    <input type="submit" value="Launch Akindi!" />
+    <input type="submit" value="<?=get_string('launching', 'local_akindi')?>" />
   </noscript>
 </form>
+<a href="<?=$CFG->wwwroot?>/course/view.php?id=<?=$id?>"><?=get_string('returntocourse', 'local_akindi')?></a>
 
 <script>
-  document.getElementById("ak-launch-form").submit();
+    setTimeout(function(){
+        document.getElementById("ak-launch-form").submit();
+        setTimeout(function(){
+            window.location = "<?=$CFG->wwwroot?>/course/view.php?id=<?=$id?>";
+        }, 1);
+    }, 1);
 </script>
 
 <?php
+
 echo $OUTPUT->footer();
+
 ?>
