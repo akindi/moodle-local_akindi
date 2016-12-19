@@ -79,24 +79,28 @@ $signature = ak_sign($CFG->akindi_secret_key, $to_sign);
 ?>
 <h2><?=get_string('launching', 'local_akindi')?>&hellip;</h2>
 
-<form id="ak-launch-form" method="POST" action="<?=trim($CFG->akindi_launch_url)?>" target="_blank">
+<form id="ak-launch-form" method="POST" action="<?=trim($CFG->akindi_launch_url)?>" onSubmit="akDisableSubmit()">
   <input type="hidden" name="public_key" value="<?=htmlspecialchars($CFG->akindi_public_key)?>" />
   <input type="hidden" name="signature" value="<?=htmlspecialchars($signature)?>" />
   <input type="hidden" name="expires" value="<?=htmlspecialchars($expires)?>" />
   <input type="hidden" name="data" value="<?=htmlspecialchars($data_str)?>" />
-  <noscript>
-    <input type="submit" value="<?=get_string('launching', 'local_akindi')?>" />
-  </noscript>
+  <input id="ak-submit-btn" type="submit" value="<?=get_string('launch', 'local_akindi')?>" />
 </form>
+
 <a href="<?=$CFG->wwwroot?>/course/view.php?id=<?=$id?>"><?=get_string('returntocourse', 'local_akindi')?></a>
 
 <script>
-    setTimeout(function(){
-        document.getElementById("ak-launch-form").submit();
-        setTimeout(function(){
-            window.location = "<?=$CFG->wwwroot?>/course/view.php?id=<?=$id?>";
-        }, 1);
-    }, 1);
+  function akDisableSubmit() {
+    var submitBtn = document.getElementById("ak-submit-btn");
+    if (!submitBtn)
+      return;
+    submitBtn.disabled = true;
+    submitBtn.value = "<?=get_string('launching', 'local_akindi')?>…";
+  }
+
+  setTimeout(function(){
+    document.getElementById("ak-launch-form").submit();
+  }, 1);
 </script>
 
 <?php

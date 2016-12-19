@@ -7,7 +7,6 @@ require_once('./common.php');
 
 require_once("$CFG->libdir/gradelib.php");
 require_once("$CFG->dirroot/grade/querylib.php");
-
 require_once("$CFG->dirroot/user/profile/lib.php");
 
 function ak_get_validate_course_id($action) {
@@ -22,13 +21,12 @@ function ak_get_validate_course_id($action) {
 
 function ak_action_get_roster($action) {
   global $CFG;
-  
+
   $course_id = ak_get_validate_course_id($action);
   $context = context_course::instance($course_id);
 
   $students = array();
   foreach (get_enrolled_users($context) as $id=>$student) {
-//    file_put_contents("/tmp/akindi.log", "akindi_student_id_field: ".$CFG->akindi_student_id_field."\n");
     if ($CFG->akindi_student_id_field == "idnumber") {
         $idnumber = $student->idnumber;
     } else if ($CFG->akindi_student_id_field == "userid") {
@@ -41,7 +39,7 @@ function ak_action_get_roster($action) {
         // Remove any characters that are not 0-9.
         $idnumber = preg_replace("/[^0-9]/", "", $idnumber);
     }
-    
+
     array_push($students, array(
       'student_id'=>$idnumber,
       'name'=>$student->lastname . "; " . $student->firstname,
