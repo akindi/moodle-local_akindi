@@ -76,10 +76,12 @@ $to_sign = "$expires\n$data_str";
 
 $signature = ak_sign($CFG->akindi_secret_key, $to_sign);
 
+$newwindow = ($CFG->akindi_open_in_new_window) ? "target=\"_blank\"" : "";
+
 ?>
 <h2><?=get_string('launching', 'local_akindi')?>&hellip;</h2>
 
-<form id="ak-launch-form" method="POST" action="<?=trim($CFG->akindi_launch_url)?>" onSubmit="akDisableSubmit()">
+<form id="ak-launch-form" method="POST" action="<?=trim($CFG->akindi_launch_url)?>" onSubmit="akDisableSubmit()" <?=$newwindow?>>
   <input type="hidden" name="public_key" value="<?=htmlspecialchars($CFG->akindi_public_key)?>" />
   <input type="hidden" name="signature" value="<?=htmlspecialchars($signature)?>" />
   <input type="hidden" name="expires" value="<?=htmlspecialchars($expires)?>" />
