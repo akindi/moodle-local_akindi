@@ -23,3 +23,15 @@ function local_akindi_extend_navigation_course($navigation, $course, $context) {
       
   }
 }
+
+function ak_settings_get_student_id_options() {
+  $options = array(
+    'idnumber'=>"ID number (idnumber)",
+    'userid'=>"Moodle user id (userid)",
+  );
+  $customfields = profile_get_custom_fields();
+  foreach ($customfields as $field) {
+    $options[$field->shortname] = "{$field->name} ({$field->shortname})";
+  }
+  return $options;
+}
