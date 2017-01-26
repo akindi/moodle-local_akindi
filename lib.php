@@ -24,6 +24,11 @@ function local_akindi_extend_navigation_course($navigation, $course, $context) {
   }
 }
 
+/**
+ * This function gets the possible student id numbers
+ * to use for identification on the akindi forms.
+ * 
+ */
 function ak_settings_get_student_id_options() {
   $options = array(
     'idnumber'=>"ID number (idnumber)",

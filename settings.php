@@ -1,6 +1,8 @@
 <?php
 
 if ( $hassiteconfig ){
+  require_once("$CFG->dirroot/local/akindi/lib.php");
+  
   $settings = new admin_settingpage('local_akindi', 'Akindi Settings');
   $ADMIN->add('localplugins', $settings);
 
