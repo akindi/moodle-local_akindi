@@ -9,7 +9,7 @@ getenv("AK_MOODLE_TEST") || die("ERROR: must be run from a testing environment (
 define('AJAX_SCRIPT', true);
 define('NO_MOODLE_COOKIES', true);
 
-require_once('./common.php');
+require_once(realpath(dirname(__FILE__)).'/common.php');
 
 require_once("$CFG->libdir/gradelib.php");
 require_once("$CFG->dirroot/grade/querylib.php");

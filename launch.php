@@ -1,5 +1,5 @@
 <?php
-require_once('./common.php');
+require_once(realpath(dirname(__FILE__)).'/common.php');
 
 /**
  * @since      08-Aug-2016

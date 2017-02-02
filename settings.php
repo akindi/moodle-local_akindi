@@ -1,18 +1,9 @@
 <?php
-
-function ak_settings_get_student_id_options() {
-  $options = array(
-    'idnumber'=>"ID number (idnumber)",
-    'userid'=>"Moodle user id (userid)",
-  );
-  $customfields = profile_get_custom_fields();
-  foreach ($customfields as $field) {
-    $options[$field->shortname] = "{$field->name} ({$field->shortname})";
-  }
-  return $options;
-}
+require_once(realpath(dirname(__FILE__)).'/common.php');
+require_once("$CFG->dirroot/user/profile/lib.php");
 
 if ( $hassiteconfig ){
+
   $settings = new admin_settingpage('local_akindi', 'Akindi Settings');
   $ADMIN->add('localplugins', $settings);
 
@@ -44,7 +35,7 @@ if ( $hassiteconfig ){
     'akindi_instance_secret',
     'Akindi instance secret',
     'A secret key you have generated (the default value is suitable). DO NOT share this value with Akindi.',
-    bin2hex(random_bytes(16)),
+    bin2hex(ak_random_bytes(16)),
     PARAM_TEXT
   ));
 
