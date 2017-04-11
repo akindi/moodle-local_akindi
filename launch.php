@@ -76,7 +76,7 @@ $to_sign = "$expires\n$data_str";
 
 $signature = ak_sign($CFG->akindi_secret_key, $to_sign);
 
-$newwindow = ($CFG->akindi_open_in_new_window) ? "target=\"_blank\"" : "";
+$newwindow = ($CFG->akindi_open_in_new_window)? 'target="_blank"' : '';
 
 ?>
 <h2><?=get_string('launching', 'local_akindi')?>&hellip;</h2>
