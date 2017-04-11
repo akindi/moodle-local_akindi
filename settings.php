@@ -50,8 +50,9 @@ if ( $hassiteconfig ){
   $settings->add(new admin_setting_configcheckbox(
     'akindi_open_in_new_window',
     'Open in new window',
-    'If you enable this, then Akindi will open in a new window. Users may get a popup warning.',
-    '0'
+    'Opens Akindi in a new window. Note: users will get a "popup blocked" warning which they will need to disable.',
+    false,
+    PARAM_BOOL
   ));
 }
 
