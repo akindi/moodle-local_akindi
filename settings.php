@@ -1,8 +1,9 @@
 <?php
 
 if ( $hassiteconfig ){
-  require_once("$CFG->dirroot/local/akindi/lib.php");
-  
+  require_once(realpath(dirname(__FILE__)).'/common.php');
+  require_once(realpath(dirname(__FILE__)).'/lib.php');
+
   $settings = new admin_settingpage('local_akindi', 'Akindi Settings');
   $ADMIN->add('localplugins', $settings);
 
@@ -34,7 +35,7 @@ if ( $hassiteconfig ){
     'akindi_instance_secret',
     'Akindi instance secret',
     'A secret key you have generated (the default value is suitable). DO NOT share this value with Akindi.',
-    bin2hex(random_bytes(16)),
+    bin2hex(ak_random_bytes(16)),
     PARAM_TEXT
   ));
 
