@@ -8,8 +8,10 @@
  */
 defined('MOODLE_INTERNAL') || die;
 
+require_once("$CFG->dirroot/user/profile/lib.php");
+
 /**
- * This function extends the navigation with the report items
+ * Extends course navigation with the Akindi link.
  *
  * @param navigation_node $navigation The navigation node to extend
  * @param stdClass $course The course to object for the report
@@ -25,9 +27,7 @@ function local_akindi_extend_navigation_course($navigation, $course, $context) {
 }
 
 /**
- * This function gets the possible student id numbers
- * to use for identification on the akindi forms.
- * 
+ * Returns the possible fields used for student ID numbers.
  */
 function ak_settings_get_student_id_options() {
   $options = array(
