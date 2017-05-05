@@ -1,7 +1,7 @@
 Akindi's Moodle Plugin
 ======================
 
-Synchronize course rosters and grades between `Akindi`__ and Moodle (3.0+).
+Synchronize course rosters and grades between `Akindi`__ and Moodle (2.7+, 3.0+).
 
 __ https://akindi.com
 

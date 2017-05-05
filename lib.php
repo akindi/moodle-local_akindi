@@ -11,19 +11,37 @@ defined('MOODLE_INTERNAL') || die;
 require_once("$CFG->dirroot/user/profile/lib.php");
 
 /**
- * Extends course navigation with the Akindi link.
- *
- * @param navigation_node $navigation The navigation node to extend
- * @param stdClass $course The course to object for the report
- * @param stdClass $context The context of the course
+ * Extends course navigation with the Akindi link (Moodle 3.X)
  */
 function local_akindi_extend_navigation_course($navigation, $course, $context) {
   global $CFG;
-  if (has_capability('moodle/grade:edit', $context)) {
-    $url = new moodle_url('/local/akindi/launch.php', array('id'=>$course->id));
-    $navigation->add('Launch Akindi', $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('i/navigationitem', ''));
-      
-  }
+  if (!has_capability('moodle/grade:edit', $context))
+    return;
+
+  $url = new moodle_url('/local/akindi/launch.php', array('id'=>$course->id));
+  $navigation->add('Launch Akindi', $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('i/navigationitem', ''));
+}
+
+/**
+ * Extends course navigation with the Akindi link (Moodle 2.X)
+ */
+function local_akindi_extends_settings_navigation($navigation, $context) {
+  global $PAGE;
+  if (!has_capability('moodle/grade:edit', $context))
+    return;
+
+  $settingnode = $navigation->find('courseadmin', navigation_node::TYPE_COURSE);
+  if (!$settingnode)
+    return;
+
+  $settingnode->add_node(navigation_node::create(
+    'Launch Akindi',
+    new moodle_url('/local/akindi/launch.php', array('id'=>$PAGE->course->id)),
+    navigation_node::NODETYPE_LEAF,
+    'akindi',
+    'null',
+    new pix_icon('i/navigationitem', 'Launch Akindi')
+  ));
 }
 
 /**
