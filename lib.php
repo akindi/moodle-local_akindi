@@ -19,7 +19,7 @@ function local_akindi_extend_navigation_course($navigation, $course, $context) {
     return;
 
   $url = new moodle_url('/local/akindi/launch.php', array('id'=>$course->id));
-  $navigation->add('Launch Akindi', $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('i/navigationitem', ''));
+  $navigation->add('Launch Akindi', $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('akindi-icon', 'Launch Akindi', 'local_akindi'));
 }
 
 /**
@@ -40,7 +40,7 @@ function local_akindi_extends_settings_navigation($navigation, $context) {
     navigation_node::NODETYPE_LEAF,
     'akindi',
     'null',
-    new pix_icon('i/navigationitem', 'Launch Akindi')
+    new pix_icon('akindi-icon', 'Launch Akindi', 'local_akindi')
   ));
 }
 
