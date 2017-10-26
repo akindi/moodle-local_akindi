@@ -26,7 +26,12 @@ function ak_action_get_roster($action) {
   $context = context_course::instance($course_id);
 
   $students = array();
-  foreach (get_enrolled_users($context) as $id=>$student) {
+  $enrolled_users = get_enrolled_users(
+    $context,
+    $withcapability='', $groupid=0, $userfields='u.*', $orderby=null, $limitfrom=0, $limitnum=0,
+    $onlyactive=true
+  );
+  foreach ($enrolled_users as $id=>$student) {
     if ($CFG->akindi_student_id_field == "idnumber") {
         $idnumber = $student->idnumber;
     } else if ($CFG->akindi_student_id_field == "userid") {
@@ -40,6 +45,14 @@ function ak_action_get_roster($action) {
         $idnumber = preg_replace("/[^0-9]/", "", $idnumber);
     }
 
+    $roles = array();
+    foreach (get_user_roles($context, $student->id, true) as $roleid=>$role) {
+      array_push($roles, array(
+        'name'=>$role->name,
+        'shortname'=>$role->shortname,
+      ));
+    }
+
     array_push($students, array(
       'student_id'=>$idnumber,
       'name'=>$student->lastname . "; " . $student->firstname,
@@ -47,7 +60,8 @@ function ak_action_get_roster($action) {
         'lms_user_id'=>$student->id,
         'lms_email'=>$student->email,
         'lms_username'=>$student->username,
-      )
+        'lms_roles'=>$roles,
+      ),
     ));
   }
 
@@ -60,7 +74,10 @@ function ak_action_get_roster($action) {
 function ak_action_list_grade_items($action) {
   $course_id = ak_get_validate_course_id($action);
   $result = array();
-  foreach (grade_item::fetch_all(array('courseid'=>$course_id, 'itemtype'=>'manual')) as $item) {
+  $items = grade_item::fetch_all(array('courseid'=>$course_id, 'itemtype'=>'manual'));
+  if (!$items)
+    $items = array();
+  foreach ($items as $item) {
     array_push($result, array(
       'id'=>$item->id,
       'name'=>$item->itemname,
