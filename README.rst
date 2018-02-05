@@ -9,17 +9,21 @@ __ https://akindi.com
 Installation
 ============
 
-1. `Contact Akindi`__ to get API keys for your Moodle instance. You will receive
-   two key pairs, one for development and one for production. They will look
-   something like this::
+1. Generate an Akindi API key:
 
-    Testing:
-    - Secret: sk_test_1234
-    - Public: pk_test_abcd
-    
-    Production:
-    - Secret: sk_abc123
-    - Public: pk_xyz789
+  a. Login to Akindi, then click *LMS Integrations* under the
+     "Administration" heading on the left nav bar (if you don't see the *LMS
+     Integrations* options, please `contact akindi`__ so we can give your
+     account access to LMS integration options).
+
+  b. Click "Add LMS Integration" and fill out the form. Make sure that the
+     *LMS URL* field beings with ``https://`` and contains the complete
+     path to the location Akindi's local plugin will be installed. The URL is
+     usually similar to
+     ``https://moodle.yourschool.com/moodle/local/akindi``.
+
+  c. Make note of the "Public Key" and "Secret Key"; you'll need these in
+     step 8.
 
 __ mailto:support@akindi.com
 
@@ -59,10 +63,10 @@ __ mailto:support@akindi.com
        | Production: ``https://akindi.com/api/moodle/launch``
 
    ``akindi_public_key``
-       The key given to you by Akindi in step 1 (it will start with ``pk_``).
+       The public key from step 1 (it will start with ``pk_``).
 
    ``akindi_secret_key``
-       The key given to you by Akindi in step 1 (it will start with ``sk_``).
+       The secret key from step 1 (it will start with ``sk_``).
 
    ``akindi_instance_secret``
        A secret key you have generated which *should not* be shared with
