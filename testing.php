@@ -114,7 +114,8 @@ function ak_test_action_setup() {
 
 function ak_test_action_get_grades() {
   global $DB;
-  return $DB->get_records('grade_grades',array('itemid'=>$_GET["itemid"]));
+  $cleaned_itemid = required_param($_GET["itemid"], PARAM_INT);
+  return $DB->get_records('grade_grades',array('itemid'=>$cleaned_itemid));
 }
 
 function ak_test_run() {
