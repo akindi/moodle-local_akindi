@@ -15,7 +15,7 @@ require_once("$CFG->dirroot/user/profile/lib.php");
  */
 function local_akindi_extend_navigation_course($navigation, $course, $context) {
   global $CFG;
-  if (!has_capability('moodle/grade:edit', $context))
+  if (!$CFG->akindi_enable_student_launch && !has_capability('moodle/grade:edit', $context))
     return;
 
   $url = new moodle_url('/local/akindi/launch.php', array('id'=>$course->id));
@@ -27,7 +27,8 @@ function local_akindi_extend_navigation_course($navigation, $course, $context) {
  */
 function local_akindi_extends_settings_navigation($navigation, $context) {
   global $PAGE;
-  if (!has_capability('moodle/grade:edit', $context))
+  global $CFG;
+  if (!$CFG->akindi_enable_student_launch && !has_capability('moodle/grade:edit', $context))
     return;
 
   $settingnode = $navigation->find('courseadmin', navigation_node::TYPE_COURSE);

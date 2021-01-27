@@ -54,6 +54,14 @@ if ( $hassiteconfig ){
     false,
     PARAM_BOOL
   ));
+
+  $settings->add(new admin_setting_configcheckbox(
+    'akindi_enable_student_launch',
+    'Enable student launch',
+    'Makes the "Launch Akindi" link available to students so they can access their online assessments via Moodle.',
+    false,
+    PARAM_BOOL
+  ));
 }
 
 ?>

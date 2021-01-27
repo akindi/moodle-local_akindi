@@ -21,7 +21,10 @@ $PAGE->set_title(get_string('launching', 'local_akindi'));
 $PAGE->navbar->add(get_string('pluginname', 'local_akindi'));
 echo $OUTPUT->header();
 
-if (!has_capability('moodle/grade:edit', $context)) {
+global $CFG;
+global $USER;
+
+if (!$CFG->akindi_enable_student_launch && !has_capability('moodle/grade:edit', $context)) {
   ?>
 
   <h2>Permission Denied</h2>
@@ -31,9 +34,6 @@ if (!has_capability('moodle/grade:edit', $context)) {
   echo $OUTPUT->footer();
   die();
 }
-
-global $CFG;
-global $USER;
 
 $required_settings = array(
   'akindi_launch_url',
