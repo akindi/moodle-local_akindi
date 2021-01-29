@@ -63,6 +63,8 @@ $data_str = json_encode(array(
     'first'=>$USER->firstname,
     'last'=>$USER->lastname,
     'key'=>ak_sign($CFG->akindi_instance_secret, $USER->id),
+    // We will use this to determine whether we should launch as an instructor or student.
+    'has_edit_grade_capability'=>has_capability('moodle/grade:edit', $context, $user=$USER->id)
   ),
   'course'=>array(
     'id'=>$course->id,
