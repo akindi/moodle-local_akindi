@@ -17,7 +17,7 @@ Installation
      account access to LMS integration options).
 
   b. Click "Add LMS Integration" and fill out the form. Make sure that the
-     *LMS URL* field beings with ``https://`` and contains the complete
+     *LMS URL* field begins with ``https://`` and contains the complete
      path to the location Akindi's local plugin will be installed. The URL is
      usually similar to
      ``https://moodle.yourschool.com/moodle/local/akindi``.
