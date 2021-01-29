@@ -11,11 +11,10 @@ require_once("$CFG->dirroot/user/profile/lib.php");
 
 function ak_get_validate_course_id($action) {
   global $AK_USER_ID;
-  global $CFG;
 
   $course_id = ak_get($action, 'course_id');
   $context = context_course::instance($course_id);
-  if (!$CFG->akindi_enable_student_launch && !has_capability('moodle/grade:edit', $context, $user=$AK_USER_ID))
+  if (!has_capability('moodle/grade:edit', $context, $user=$AK_USER_ID))
     throw new moodle_exception("no-permission:$AK_USER_ID-in-$course_id", 'akindi');
   return $course_id;
 }
