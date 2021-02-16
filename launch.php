@@ -21,7 +21,10 @@ $PAGE->set_title(get_string('launching', 'local_akindi'));
 $PAGE->navbar->add(get_string('pluginname', 'local_akindi'));
 echo $OUTPUT->header();
 
-if (!has_capability('moodle/grade:edit', $context)) {
+global $CFG;
+global $USER;
+
+if (!$CFG->akindi_enable_student_launch && !has_capability('moodle/grade:edit', $context)) {
   ?>
 
   <h2>Permission Denied</h2>
@@ -31,9 +34,6 @@ if (!has_capability('moodle/grade:edit', $context)) {
   echo $OUTPUT->footer();
   die();
 }
-
-global $CFG;
-global $USER;
 
 $required_settings = array(
   'akindi_launch_url',
@@ -63,6 +63,8 @@ $data_str = json_encode(array(
     'first'=>$USER->firstname,
     'last'=>$USER->lastname,
     'key'=>ak_sign($CFG->akindi_instance_secret, $USER->id),
+    // We will use this to determine whether we should launch as an instructor or student.
+    'has_edit_grade_capability'=>has_capability('moodle/grade:edit', $context, $user=$USER->id)
   ),
   'course'=>array(
     'id'=>$course->id,
