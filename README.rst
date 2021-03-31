@@ -59,7 +59,7 @@ __ mailto:support@akindi.com
    installation:
 
    ``akindi_launch_url``
-       | Testing: ``https://dev.akindi.com/api/moodle/launch``
+       | Testing: ``https://akindistg.com/api/moodle/launch``
        | Production: ``https://akindi.com/api/moodle/launch``
 
    ``akindi_public_key``
