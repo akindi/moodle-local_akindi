@@ -59,8 +59,7 @@ __ mailto:support@akindi.com
    installation:
 
    ``akindi_launch_url``
-       | Testing: ``https://akindistg.com/api/moodle/launch``
-       | Production: ``https://akindi.com/api/moodle/launch``
+       | ``https://akindi.com/api/moodle/launch``
 
    ``akindi_public_key``
        The public key from step 1 (it will start with ``pk_``).
