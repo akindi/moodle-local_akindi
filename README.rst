@@ -1,7 +1,7 @@
 Akindi's Moodle Plugin
 ======================
 
-Synchronize course rosters and grades between `Akindi`__ and Moodle (2.7+, 3.0+).
+Synchronize course rosters and grades between `Akindi`__ and Moodle.
 
 __ https://akindi.com
 
@@ -29,6 +29,8 @@ __ mailto:support@akindi.com
 
 2. Download the latest version of the plugin from Github:
    https://github.com/akindi/moodle-local_akindi/archive/master.zip
+
+   (For older versions of Moodle before 3.6 use the link https://github.com/akindi/moodle-local_akindi/archive/refs/tags/v1.1.0.zip)
 
 3. Login to your Moodle instance, and under the Administration panel, expand
    *Plugins* and click *Install plugins*:

@@ -135,14 +135,12 @@ function ak_action_update_grades($action) {
 
   $grade_item = reset($grade_items);
   unset($grade_items);
-  $grade_item->itemtype = 'mod';
-  $grade_item->itemmodule = 'assign';
 
   $res = array();
   foreach (ak_get($AK_POST_JSON, 'updates') as $update) {
     $userid = ak_get($update, 'lms_user_id');
     $rawgrade = ak_get($update, 'mark');
-    $did_update = $grade_item->update_raw_grade(
+    $did_update = $grade_item->update_final_grade(
       $userid, $rawgrade, 'akindi', '', FORMAT_PLAIN, $USER->id
     );
     array_push($res, array('lms_user_id'=>$userid, 'success'=>$did_update));
