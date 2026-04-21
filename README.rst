@@ -9,28 +9,13 @@ __ https://akindi.com
 Installation
 ============
 
-1. Generate an Akindi API key:
+1. Receive Akindi API Key.
 
-  a. Login to Akindi, then click *LMS Integrations* under the
-     "Administration" heading on the left nav bar (if you don't see the *LMS
-     Integrations* options, please `contact akindi`__ so we can give your
-     account access to LMS integration options).
-
-  b. Click "Add LMS Integration" and fill out the form. Make sure that the
-     *LMS URL* field begins with ``https://`` and contains the complete
-     path to the location Akindi's local plugin will be installed. The URL is
-     usually similar to
-     ``https://moodle.yourschool.com/moodle/local/akindi``.
-
-  c. Make note of the "Public Key" and "Secret Key"; you'll need these in
-     step 8.
-
-__ mailto:support@akindi.com
+   Contact your Akindi Customer Success Manager to receive the "Public Key" and
+   "Secret Key". You will need these in step 8 of installation.
 
 2. Download the latest version of the plugin from Github:
    https://github.com/akindi/moodle-local_akindi/archive/master.zip
-
-   (For older versions of Moodle before 3.6 use the link https://github.com/akindi/moodle-local_akindi/archive/refs/tags/v1.1.0.zip)
 
 3. Login to your Moodle instance, and under the Administration panel, expand
    *Plugins* and click *Install plugins*:
