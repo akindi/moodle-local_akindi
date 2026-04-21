@@ -103,7 +103,6 @@ function ak_action_create_update_grade_item($action) {
     'itemname'=>ak_get($obj, 'name'),
     'grademin'=>ak_get($obj, 'min_mark'),
     'grademax'=>ak_get($obj, 'max_mark'),
-    'hidden'=>ak_get($obj, 'hidden'),
   ));
   if ($item_id) {
     $item->update();
