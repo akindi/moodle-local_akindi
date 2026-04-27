@@ -3,6 +3,8 @@ Akindi's Moodle Plugin
 
 Synchronize course rosters and grades between `Akindi`__ and Moodle.
 
+Compatible with Moodle versions 2.x, 3.x, 4.x, and 5.x.
+
 __ https://akindi.com
 
 
